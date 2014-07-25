@@ -1,0 +1,13 @@
+JSON:
+{"id":"A2","name":"B2","full_name":"C2","type":"D2","points":"E2","map":"G2","location":"H2"},
+
+
+EXCEL w/ JavaScript Escape Characters:
+="{\"id\":\"" & A2 & "\",\"name\":\"" & B2 & "\",\"full_name\":\"" & C2 & "\",\"type\":\"" & D2 & "\",\"points\":\"" & E2 & "\",\"map\":\"" & G2 & "\",\"location\":\"" & H2 & "\"},"
+
+
+EXCEL:
+="{""id"":""" & A2 & """,""name"":""" & B2 & """,""full_name"":""" & C2 & """,""type"":""" & D2 & """,""points"":""" & E2 & """,""map"":""" & G2 & """,""location"":""" & H2 & """},"
+
+
+

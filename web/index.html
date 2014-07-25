@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    <head>
+	
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+        <title>Guild Wars 2: W.A.C.K.</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+		<!-- STYLES -->
+        <link rel="stylesheet" href="css/normalize.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/main.min.css">
+
+		<!-- MODERNIZR -->
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		
+    </head>
+	
+    <body ng-app="app" ng-controller="AppController">
+	
+		<div id="container">
+	
+			<!--[if lt IE 10]>
+			<div class="chromeframe">
+				<p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+			</div>
+			<![endif]-->
+
+			<header>
+				<div id="header-container" class="clearfix">
+					<p><span>G</span>uild<span>W</span>ars<span class="numeral">2</span>:</p>
+					<h1><span>W</span>orld <span>A</span>uxillary <span>C</span>ommand <span>K</span>onsole</h1>
+					<nav>
+						<ul>
+							<li><button id="nav-about"><i class="icon-info-sign"></i> About</button></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			
+			<div id="main">
+			
+				<div id="main-container">
+					
+					<div id="world-select" class="display-{{display}}" ng-controller="WorldController">
+					
+						<div id="world-container" class="clearfix">
+						
+							<div id="north-america" class="region">
+								<h3>North America</h3>
+								<ul>
+									<li ng-repeat="world in worldsNA"><button ng-click="onWorldSelect(world)">{{world.name}}</button></li>
+								</ul>
+							</div>
+							
+							<div id="europe" class="region">
+								<h3>Europe</h3>
+								<ul>
+									<li ng-repeat="world in worldsEU"><button ng-click="onWorldSelect(world)">{{world.name}}</button></li>
+								</ul>
+							</div>
+							
+						</div>
+					
+					</div>
+					
+					<div id="match-details" class="display-{{display}}" ng-controller="MatchController">
+					
+						<div class="match-world-select">
+							<button ng-click="onWorldSelect()"><i class="icon-globe"></i> World Select</button>
+						</div>
+					
+						<div id="match-container">
+					
+							<div id="match-worlds" class="clearfix">
+						
+								<div id="match-world-0" class="match-world-summary {{worlds[0].color}} clearfix">
+									<h2>{{worlds[0].name}}</h2>
+									<p>{{worlds[0].totalpoints}} Total Points (+{{worlds[0].points}})</p>
+									<ul>
+										<li class="count-{{worlds[0].fortifications.camp}}">
+											<i class="icon icon-camp"></i>&times;{{worlds[0].fortifications.camp}}
+										</li>
+										<li class="count-{{worlds[0].fortifications.tower}}">
+											<i class="icon icon-tower"></i>&times;{{worlds[0].fortifications.tower}}
+										</li>
+										<li class="count-{{worlds[0].fortifications.keep}}">
+											<i class="icon icon-keep"></i>&times;{{worlds[0].fortifications.keep}}
+										</li>
+										<li class="count-{{worlds[0].fortifications.castle}}">
+											<i class="icon icon-castle"></i>&times;{{worlds[0].fortifications.castle}}
+										</li>
+									</ul>							
+								</div>
+								
+								<div id="match-world-1" class="match-world-summary {{worlds[1].color}} clearfix">
+									<h2>{{worlds[1].name}}</h2>
+									<p>{{worlds[1].totalpoints}} Total Points (+{{worlds[1].points}})</p>
+									<ul>
+										<li class="count-{{worlds[1].fortifications.camp}}">
+											<i class="icon icon-camp"></i>&times;{{worlds[1].fortifications.camp}}
+										</li>
+										<li class="count-{{worlds[1].fortifications.tower}}">
+											<i class="icon icon-tower"></i>&times;{{worlds[1].fortifications.tower}}
+										</li>
+										<li class="count-{{worlds[1].fortifications.keep}}">
+											<i class="icon icon-keep"></i>&times;{{worlds[1].fortifications.keep}}
+										</li>
+										<li class="count-{{worlds[1].fortifications.castle}}">
+											<i class="icon icon-castle"></i>&times;{{worlds[1].fortifications.castle}}
+										</li>
+									</ul>								
+								</div>
+								
+								<div id="match-world-2" class="match-world-summary {{worlds[2].color}} clearfix">
+									<h2>{{worlds[2].name}}</h2>
+									<p>{{worlds[2].totalpoints}} Total Points (+{{worlds[2].points}})</p>
+									<ul>
+										<li class="count-{{worlds[2].fortifications.camp}}">
+											<i class="icon icon-camp"></i>&times;{{worlds[2].fortifications.camp}}
+										</li>
+										<li class="count-{{worlds[2].fortifications.tower}}">
+											<i class="icon icon-tower"></i>&times;{{worlds[2].fortifications.tower}}
+										</li>
+										<li class="count-{{worlds[2].fortifications.keep}}">
+											<i class="icon icon-keep"></i>&times;{{worlds[2].fortifications.keep}}
+										</li>
+										<li class="count-{{worlds[2].fortifications.castle}}">
+											<i class="icon icon-castle"></i>&times;{{worlds[2].fortifications.castle}}
+										</li>
+									</ul>	
+								</div>
+								
+							</div>
+
+							<div id="match-maps" class="clearfix">
+							
+								<div id="eternal-battlegrounds-objectives" class="match-map-summary">
+									<div class="match-map-toggle"><i class="icon-minus-sign-alt icon-3x"></i></div>
+									<h3>Eternal Battlegrounds</h3>
+									<ul>
+										<li class="{{obj.owner}} clearfix" ng-repeat="obj in eternalBattlegrounds">
+											<div class="match-map-type">
+												<i class="icon-{{obj.type}} icon-1x"></i>									
+											</div>
+											<div class="match-map-objective">
+												<h4>{{obj.name}} <span>({{obj.points}}pts)</span></h4>
+											</div>
+											<div class="match-map-location">
+												<div class="dir-{{obj.dir}}">
+													<i class="icon-circle-arrow-right"></i>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								
+								<div id="world-objectives-0" class="match-map-summary">
+									<div class="match-map-toggle"><i class="icon-minus-sign-alt icon-3x"></i></div>
+									<h3>{{worlds[0].name}} Borderlands</h3>
+									<ul>
+										<li class="{{obj.owner}} clearfix" ng-repeat="obj in worlds[0].objectives">
+											<div class="match-map-type">
+												<i class="icon-{{obj.type}} icon-1x"></i>									
+											</div>
+											<div class="match-map-objective">
+												<h4>{{obj.name}} <span>({{obj.points}}pts)</span></h4>
+											</div>
+											<div class="match-map-location">
+												<div class="dir-{{obj.dir}}">
+													<i class="icon-circle-arrow-right"></i>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								
+								<div id="world-objectives-1" class="match-map-summary">
+									<div class="match-map-toggle"><i class="icon-minus-sign-alt icon-3x"></i></div>
+									<h3>{{worlds[1].name}} Borderlands</h3>
+									<ul>
+										<li class="{{obj.owner}} clearfix" ng-repeat="obj in worlds[1].objectives">
+											<div class="match-map-type">
+												<i class="icon-{{obj.type}} icon-1x"></i>									
+											</div>
+											<div class="match-map-objective">
+												<h4>{{obj.name}} <span>({{obj.points}}pts)</span></h4>
+											</div>
+											<div class="match-map-location">
+												<div class="dir-{{obj.dir}}">
+													<i class="icon-circle-arrow-right"></i>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								
+								<div id="world-objectives-2" class="match-map-summary">
+									<div class="match-map-toggle"><i class="icon-minus-sign-alt icon-3x"></i></div>
+									<h3>{{worlds[2].name}} Borderlands</h3>
+									<ul>
+										<li class="{{obj.owner}} clearfix" ng-repeat="obj in worlds[2].objectives">
+											<div class="match-map-type">
+												<i class="icon-{{obj.type}} icon-1x"></i>									
+											</div>
+											<div class="match-map-objective">
+												<h4>{{obj.name}} <span>({{obj.points}}pts)</span></h4>
+											</div>
+											<div class="match-map-location">
+												<div class="dir-{{obj.dir}}">
+													<i class="icon-circle-arrow-right"></i>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								
+							</div>					
+						
+						</div>
+						
+					</div>
+
+				</div>
+			
+			</div>
+			
+			<footer>
+				<p>Copyright &copy; 2013 Richard Nelson / <a href="http://www.mercilessinteractive.com/" target="_blank">Merciless Interactive</a>. All Rights Reserved.</p>
+			</footer>
+			
+			<div id="overlay" class="hide">
+			
+				<div id="overlay-container">
+				
+					<div id="overlay-close">
+						<button><i class="icon-remove-sign icon-3x"></i></button>
+					</div>
+				
+					<div id="overlay-about">
+						
+						<h2>Introduction</h2>
+						<p>Welcome to WACK, the World Auxilary Command Konsole!  This web application uses the official Guild Wars 2 API to bring you the latest status of all WvW (World vs World) match ups in the game.  Using responsive web design techniques, this application will conform to fit on any HTML5 compatible browser.  No need for a native app for your computer desktop or mobile phone, just use your web browser!</p>
+						
+						<h3>Instructions</h3>
+						<p>From the world select menu, simply click on your world server.  The app will then redirect you to the correct URL for your current match up.  You can bookmark this page for quick access in the future.  Every 30 seconds the app will update the match details.</p>
+						
+						<h3>Objective Icons</h3>
+						<p>Each objective icon represents a type of fortification in WvW, as follows:</p>
+						<ul>
+							<li><i class="icon-castle"></i> Stonemist Castle - The biggest structure in WvW strategically positioned in the center of the Eternal Battlegrounds.</li>
+							<li><i class="icon-keep"></i> Keeps - Three keeps are found in each WvW map.  These massive fortifications employ inner and outer gates that must be breached to be taken.</li>
+							<li><i class="icon-tower"></i> Towers - Smaller fortifications defended by a single gate and wall.</li>
+							<li><i class="icon-camp"></i> Camps - Generating supply and delivering it to nearby towers and keeps, each battleground has six camps. They are defended only by a small group of guards and include no walls or gates.</li>
+						</ul>
+						
+						<h3>Directional Icons</h3>
+						<p>The directional arrows on the right of each objective indicate the location of the fortification on the map, as follows:</p>
+						<ul>
+							<li><span class="dir-0"><i class="icon-circle-arrow-right"></i></span> East side of the map.</li>
+							<li><span class="dir-1"><i class="icon-circle-arrow-right"></i></span> Southeast side of the map.</li>
+							<li><span class="dir-2"><i class="icon-circle-arrow-right"></i></span> South side of the map.</li>
+							<li><span class="dir-3"><i class="icon-circle-arrow-right"></i></span> Southwest side of the map.</li>
+							<li><span class="dir-4"><i class="icon-circle-arrow-right"></i></span> West side of the map.</li>
+							<li><span class="dir-5"><i class="icon-circle-arrow-right"></i></span> Northwest side of the map.</li>
+							<li><span class="dir-6"><i class="icon-circle-arrow-right"></i></span> North side of the map.</li>
+							<li><span class="dir-7"><i class="icon-circle-arrow-right"></i></span> Northeast side of the map.</li>
+							<li><span class="dir-8"><i class="icon-circle-arrow-right"></i></span> Center of the map.</li>
+						</ul>
+						
+						<h3>Author</h3>
+						<p>Development of Guild Wars 2: WACK has been the sole endeavor of Richard Nelson.  For more information and portfolio (albeit an outdated portfolio) please visit <a href="http://www.mercilessinteractive.com/" target="_blank">Merciless Interactive</a>.</p>
+						
+					</div>
+				
+				</div>
+			
+			</div>
+			
+		</div>
+		
+		<!-- jQUERY -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+		
+		<!-- ANGULAR JS -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		
+		<!-- SCRIPTS -->
+		<script src="js/plugins.js"></script>        
+        <script src="js/main.js"></script>
+		
+		<!-- MVC -->
+		<script src="js/controllers.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/services.js"></script>
+		
+		<!-- GOOGLE ANALYTICS -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-41649857-1']);
+			_gaq.push(['_trackPageview']);
+			
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+				
+    </body>
+</html>
